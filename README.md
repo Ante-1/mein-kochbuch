@@ -9,10 +9,16 @@ Which uses next-js, tailwind, trpc and next-auth packages.
 
 ## Next steps (reminder)
 
-1. Build a form to create recipes
-2. Build a list that shows all recipes (most recent?)
-3. Build detail page for recipes
-4. Build a seach page
-5. styling
+- Build a form to create recipes
+- Build a list that shows all recipes (most recent?)
+- Build detail page for recipes
+- Build a seach page
+- styling
+- think about how to create a form and how to update
+- so that you can create and add ingeredients to a recipe
+- when to save ingredients (save button?)
 
-get local db dev brach proxy `pscale connect mein-kochbuch dev --port 3309`
+## start developing
+
+- get local db dev brach proxy `pscale connect mein-kochbuch dev --port 3309`
+- `npm run dev`
