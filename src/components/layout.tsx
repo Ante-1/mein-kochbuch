@@ -11,8 +11,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container mx-auto flex flex-col items-center h-screen p-4">
-        <nav className="text-2xl text-gray-700">
+      <main className="container mx-auto flex flex-col items-center h-screen p-4 text-gray-700">
+        <nav className="text-2xl">
           <ul className="flex gap-16">
             <li>
               <Link href="/">Home</Link>

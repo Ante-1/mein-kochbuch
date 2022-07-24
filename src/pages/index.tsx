@@ -12,10 +12,10 @@ const Home: NextPage = () => {
 
   return (
     <Layout>
-      <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold text-gray-700">
+      <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold">
         Mein Kochbuch
       </h1>
-      <p className="text-2xl text-gray-700">Neueste Rezepte</p>
+      <p className="text-2xl">Neueste Rezepte</p>
       <div className="grid gap-3 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3">
         {recipesQuery.data ? (
           <p>
@@ -45,7 +45,7 @@ const Home: NextPage = () => {
 const RecipeCard = ({ name, description }: RecipeCardProps) => {
   return (
     <section className="flex flex-col justify-center p-6 duration-500 border-2 border-gray-500 rounded shadow-xl motion-safe:hover:scale-105">
-      <h2 className="text-lg text-gray-700">{name}</h2>
+      <h2 className="text-lg">{name}</h2>
       <p className="text-sm text-gray-600">{description}</p>
     </section>
   );

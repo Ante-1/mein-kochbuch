@@ -7,7 +7,7 @@ const Search: NextPage = () => {
 
   return (
     <Layout>
-      <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold text-gray-700">
+      <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold">
         Rezept suchen
       </h1>
     </Layout>
