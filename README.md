@@ -14,3 +14,5 @@ Which uses next-js, tailwind, trpc and next-auth packages.
 3. Build detail page for recipes
 4. Build a seach page
 5. styling
+
+get local db dev brach proxy `pscale connect mein-kochbuch dev --port 3309`
