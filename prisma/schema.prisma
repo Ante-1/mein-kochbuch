@@ -13,23 +13,31 @@ datasource db {
 }
 
 model Recipe {
-    id           String       @id @default(cuid())
+    id           String             @id @default(cuid())
     name         String
-    instructions String
-    createdAt    DateTime     @default(now())
-    image        String
-    ingredients  Ingredient[]
+    instructions String?
+    createdAt    DateTime           @default(now())
+    image        String?
+    ingredients  ingredientAmount[]
 }
 
 // beim formular für die zutaten soll es eine auto-verfollständigung für bereits
 // existierende Zutaten geben, man hat aber auch die Möglichkeit selber eine neue
 // anzulegen
 model Ingredient {
-    id       String  @id @default(cuid())
-    name     String
-    amount   String
-    Recipe   Recipe? @relation(fields: [recipeId], references: [id])
-    recipeId String?
+    id               String             @id @default(cuid())
+    name             String
+    ingredientAmount ingredientAmount[]
+}
+
+model ingredientAmount {
+    id           String      @id @default(cuid())
+    ingredientId String
+    amount       String
+    Recipe       Recipe?     @relation(fields: [recipeId], references: [id])
+    recipeId     String?
+    Ingredient   Ingredient? @relation(fields: [ingredientId], references: [id])
+    ingredienId  String?
 }
 
 // model Example {
