@@ -17,6 +17,8 @@ Which uses next-js, tailwind, trpc and next-auth packages.
 - think about how to create a form and how to update
 - so that you can create and add ingeredients to a recipe
 - when to save ingredients (save button?)
+- show ingredients instead of first 100 chars of instruction in index page
+  for each recipe
 
 ## start developing
 
