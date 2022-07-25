@@ -15,10 +15,10 @@ const Home: NextPage = () => {
       <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold">
         Mein Kochbuch
       </h1>
-      <p className="text-2xl">Neueste Rezepte</p>
+      <h2 className="text-2xl">Neueste Rezepte</h2>
       <div className="grid gap-3 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3">
         {recipesQuery.data ? (
-          <p>
+          <>
             {recipesQuery.data.recipes.map((r) => (
               <RecipeCard
                 key={r.id}
@@ -32,7 +32,7 @@ const Home: NextPage = () => {
                 }
               />
             ))}
-          </p>
+          </>
         ) : (
           <p>Loading..</p>
         )}

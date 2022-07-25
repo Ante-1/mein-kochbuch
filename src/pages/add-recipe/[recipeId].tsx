@@ -1,19 +1,32 @@
 import type { NextPage } from "next";
-import Layout from "../components/layout";
-import { trpc } from "../utils/trpc";
+import Layout from "../../components/layout";
+import { trpc } from "../../utils/trpc";
+import { useRouter } from "next/router";
 
 const AddRecipe: NextPage = () => {
+  const router = useRouter();
+  const { recipeId } = router.query;
   const ingredientsQuery = trpc.useQuery(["recipes.ingredients"]);
-  const recipeMutation = trpc.useMutation(["recipes.add-recipe"]);
+  const recipeMutation = trpc.useMutation(["recipes.update-recipe"]);
+  const recipeQuery = trpc.useQuery([
+    "recipes.recipe",
+    { id: recipeId as string },
+  ]);
 
   async function handleSubmit(event: any) {
     event.preventDefault();
     const form = new FormData(event.target);
     const formData = Object.fromEntries(form.entries());
     await recipeMutation.mutateAsync({
+      id: recipeId as string,
       instructions: formData.instructions as string,
       name: formData.name as string,
     });
+    router.push("/");
+  }
+
+  if (!recipeQuery.data) {
+    return <>Loading...</>;
   }
 
   return (
@@ -26,6 +39,7 @@ const AddRecipe: NextPage = () => {
           <label className="block mb-2 text-sm font-medium w-full">
             Name
             <input
+              defaultValue={recipeQuery.data.name}
               name="name"
               className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             />

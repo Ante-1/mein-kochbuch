@@ -29,8 +29,6 @@ export const recipesAndIngredientsRouter = createRouter()
   .mutation("add-recipe", {
     input: z.object({
       name: z.string(),
-      instructions: z.string(),
-      image: z.string().optional(),
     }),
     async resolve({ ctx, input }) {
       return await ctx.prisma.recipe.create({
