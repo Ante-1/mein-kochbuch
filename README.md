@@ -24,3 +24,7 @@ Which uses next-js, tailwind, trpc and next-auth packages.
 
 - get local db dev brach proxy `pscale connect mein-kochbuch dev --port 3309`
 - `npm run dev`
+
+## salved problems
+
+- HMR doesn't work in WSL2 in Windows file system and performance is generally terrible. Move to project ~ to fix
