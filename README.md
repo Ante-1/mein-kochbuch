@@ -19,6 +19,7 @@ Which uses next-js, tailwind, trpc and next-auth packages.
 - when to save ingredients (save button?)
 - show ingredients instead of first 100 chars of instruction in index page
   for each recipe
+- what do i use for the ingredient select, mui autocomplete looks like exactly what i need but the hooks doesn't work like i want it to. so maybe i switch over to mui completely
 
 ## start developing
 

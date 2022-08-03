@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Layout from "../../components/layout";
 import { trpc } from "../../utils/trpc";
 import { useRouter } from "next/router";
+import { Autocomplete } from "../../components/autocomplete";
 
 const AddRecipe: NextPage = () => {
   const router = useRouter();
@@ -41,6 +42,22 @@ const AddRecipe: NextPage = () => {
             <input
               defaultValue={recipeQuery.data.name}
               name="name"
+              className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            />
+          </label>
+        </div>
+        <h2 className="text-2xl">Zutaten</h2>
+        <div className="mb-2 w-full flex gap-4">
+          <Autocomplete
+            id="ingredient1"
+            options={["eins", "zwei", "drei"]}
+            getOptionLabel={(option) => option as string}
+            label="Zutat auswählen"
+          />
+          <label className="block mb-2 text-sm font-medium w-full">
+            Menge
+            <input
+              name="amount"
               className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             />
           </label>
