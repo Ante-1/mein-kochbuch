@@ -4,7 +4,11 @@ import type { AppRouter } from "../server/router";
 import type { AppType } from "next/dist/shared/lib/utils";
 import superjson from "superjson";
 import { SessionProvider } from "next-auth/react";
-import "../styles/globals.css";
+import CssBaseline from '@mui/material/CssBaseline';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 const MyApp: AppType = ({
   Component,
@@ -12,6 +16,7 @@ const MyApp: AppType = ({
 }) => {
   return (
     <SessionProvider session={session}>
+      <CssBaseline enableColorScheme={true}/>
       <Component {...pageProps} />
     </SessionProvider>
   );
