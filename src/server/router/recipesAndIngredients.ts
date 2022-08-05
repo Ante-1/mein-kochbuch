@@ -20,20 +20,15 @@ export const recipesAndIngredientsRouter = createRouter()
       return await ctx.prisma.ingredient.findMany();
     },
   })
-  .mutation("add-ingredient", {
+  .mutation("create-ingredient", {
     input: z.object({ name: z.string() }),
     async resolve({ ctx, input }) {
       return await ctx.prisma.ingredient.create({ data: input });
     },
   })
-  .mutation("add-recipe", {
-    input: z.object({
-      name: z.string(),
-    }),
-    async resolve({ ctx, input }) {
-      return await ctx.prisma.recipe.create({
-        data: input,
-      });
+  .mutation("create-recipe", {
+    async resolve({ ctx }) {
+      return await ctx.prisma.recipe.create({ data: {} });
     },
   })
   .mutation("add-ingredient-to-recipe", {

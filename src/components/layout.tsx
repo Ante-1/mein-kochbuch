@@ -5,8 +5,13 @@ import { ReactNode, useState } from "react";
 import { trpc } from "../utils/trpc";
 
 const Layout = ({ children }: { children: ReactNode }) => {
-  const recipeMutation = trpc.useMutation(["recipes.add-recipe"]);
+  const recipeMutation = trpc.useMutation(["recipes.create-recipe"]);
   const router = useRouter();
+
+  const createRecipe = async () => {
+    const recipe = await recipeMutation.mutateAsync();
+    router.push("/create-recipe/" + recipe.id);
+  };
 
   return (
     <>
@@ -28,7 +33,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
               <Link href="/search">Rezept Suchen</Link>
             </li>
             <button
-              onClick={openDialog}
+              onClick={createRecipe}
               className="px-3 pb-1 duration-500 border-2 border-gray-500 rounded shadow-xl motion-safe:hover:scale-105"
             >
               Neues Rezept anlegen

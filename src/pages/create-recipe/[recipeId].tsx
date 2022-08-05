@@ -2,7 +2,8 @@ import type { NextPage } from "next";
 import Layout from "../../components/layout";
 import { trpc } from "../../utils/trpc";
 import { useRouter } from "next/router";
-import { Autocomplete } from "../../components/autocomplete";
+import { Autocomplete, TextField } from "@mui/material";
+import { useState } from "react";
 
 const AddRecipe: NextPage = () => {
   const router = useRouter();
@@ -13,6 +14,7 @@ const AddRecipe: NextPage = () => {
     "recipes.recipe",
     { id: recipeId as string },
   ]);
+  const [value, setValue] = useState<any | null>(null);
 
   async function handleSubmit(event: any) {
     event.preventDefault();
@@ -40,7 +42,6 @@ const AddRecipe: NextPage = () => {
           <label className="block mb-2 text-sm font-medium w-full">
             Name
             <input
-              defaultValue={recipeQuery.data.name}
               name="name"
               className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             />
@@ -49,10 +50,60 @@ const AddRecipe: NextPage = () => {
         <h2 className="text-2xl">Zutaten</h2>
         <div className="mb-2 w-full flex gap-4">
           <Autocomplete
-            id="ingredient1"
-            options={["eins", "zwei", "drei"]}
-            getOptionLabel={(option) => option as string}
-            label="Zutat auswählen"
+            value={value}
+            onChange={(event, newValue) => {
+              if (typeof newValue === "string") {
+                setValue({
+                  title: newValue,
+                });
+              } else if (newValue && newValue.inputValue) {
+                // Create a new value from the user input
+                setValue({
+                  title: newValue.inputValue,
+                });
+              } else {
+                setValue(newValue);
+              }
+            }}
+            filterOptions={(options, params) => {
+              // const filtered = filter(options, params);
+              console.log("options", options, "params", params);
+
+              const { inputValue } = params;
+              // Suggest the creation of a new value
+              // const isExisting = options.some((option) => inputValue === option.title);
+              // if (inputValue !== '' && !isExisting) {
+              //   filtered.push({
+              //     inputValue,
+              //     title: `Add "${inputValue}"`,
+              //   });
+              // }
+
+              return options;
+            }}
+            selectOnFocus
+            clearOnBlur
+            handleHomeEndKeys
+            id="new-ingredient"
+            options={[]}
+            getOptionLabel={(option) => {
+              // Value selected with enter, right from the input
+              if (typeof option === "string") {
+                return option;
+              }
+              // Add "xxx" option created dynamically
+              if (option.inputValue) {
+                return option.inputValue;
+              }
+              // Regular option
+              return option.title;
+            }}
+            renderOption={(props, option) => <li {...props}>{option.title}</li>}
+            sx={{ width: 300 }}
+            freeSolo
+            renderInput={(params) => (
+              <TextField {...params} label="Free solo with text demo" />
+            )}
           />
           <label className="block mb-2 text-sm font-medium w-full">
             Menge
